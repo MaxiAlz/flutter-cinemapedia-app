@@ -8,6 +8,20 @@ final nowPlayingMoviesProvider =
   return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
 });
 
+final popularMoviesProvider =
+    StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getPopularMovies;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+});
+
+final upcomingMoviesProvider =
+    StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getUpcoming;
+  
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+});
+
 // caso de uso => para cargar las siguientes peliculas va
 typedef MovieCallback = Future<List<Movie>> Function({int page});
 
