@@ -73,4 +73,12 @@ class MovieDbDatasource extends MoviesDatasource {
 
     return _jsonToMovies(apiResponse.data);
   }
+
+  @override
+  Future<List<Movie>> getTopRated({int page = 1}) async {
+    final apiResponse =
+        await dio.get('/movie/upcoming', queryParameters: {'page': page});
+
+    return _jsonToMovies(apiResponse.data);
+  }
 }
